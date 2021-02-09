@@ -1,13 +1,6 @@
 <#import "parts/common.ftl" as c>
 
 <@c.page>
-<div>
-    <form action="main">
-        <input type="hidden" name="_csrf" value="${_csrf.token}" />
-        <button type="submit">Назад</button>
-    </form>
-</div>
-
 List of users
 
 <table>
@@ -29,3 +22,4 @@ List of users
     </tbody>
 </table>
 </@c.page>
+
