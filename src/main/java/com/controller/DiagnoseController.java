@@ -55,8 +55,9 @@ public class DiagnoseController {
 
     @PostMapping("pet/{id}/diagnose/{did}")
     public String diagnoseEdit(@PathVariable String did, @RequestParam String name,
-                               @RequestParam String simptom, @RequestParam String medicine){
+                               @RequestParam String simptom, @RequestParam String medicine, @PathVariable String id){
         Integer diaId = Integer.valueOf(did);
+        Integer petId = Integer.valueOf(id);
         List<Diagnose> dias = diagnoseRepo.findById(diaId);
         Diagnose diagnose = dias.get(0);
         if (!StringUtils.isEmpty(name) && !StringUtils.isEmpty(simptom) && !StringUtils.isEmpty(medicine)){
@@ -65,6 +66,6 @@ public class DiagnoseController {
             diagnose.setName(name);
         }
         diagnoseRepo.save(diagnose);
-        return "redirect:/diagnoseEdit";
+        return "redirect:/pet/" + petId.toString() + "/diagnose/" + diagnose.getId();
     }
 }

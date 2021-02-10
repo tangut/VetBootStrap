@@ -4,7 +4,7 @@
 <@c.page>
 <form method="get" action="/petList">
     <input type="text" name="filter" value="${filter!""}">
-    <button type="submit" class="btn btn-primary">Find</button>
+    <button type="submit" class="btn btn-primary">Find by number</button>
 </form>
 <#list pets as pet>
 <div>
