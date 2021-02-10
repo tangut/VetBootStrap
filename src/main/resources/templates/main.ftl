@@ -4,24 +4,20 @@
 <@c.page>
 <div>
     <form method="post">
-        <input type="text" name="name" placeholder="Кличка животного" />
-        <input type="text" name="kind" placeholder="Вид">
-        <input type="text" name="breed" placeholder="Порода">
+        <input type="text" name="name" placeholder="Name of pet" />
+        <input type="text" name="kind" placeholder="Kind">
+        <input type="text" name="breed" placeholder="Breed">
         <input type="hidden" name="_csrf" value="${_csrf.token}" />
-        <button type="submit" class="btn btn-primary">Добавить</button>
+        <button type="submit" class="btn btn-primary">Add</button>
     </form>
 </div>
-<div>Список животных</div>
-<form method="get" action="/main">
-    <input type="text" name="filter" value="${filter!""}">
-    <button type="submit" class="btn btn-primary">Найти</button>
-</form>
 <#list pets as pet>
 <div>
-    <span>${pet.name}</span>
-    <span>${pet.kind}</span>
-    <span>${pet.breed}</span>
-    <strong>${pet.masterName}</strong>
+    <div><h4> Pet № ${pet.id}</h4></div>
+    <div>Name: <span>${pet.name}</span></div>
+    <div>Kind: <span>${pet.kind}</span></div>
+    <div>Breed: <span>${pet.breed}</span></div>
+    <div><td><a href="/pet/${pet.id}">View pet profile</a></td></div>
 </div>
 <#else>
 No pets

@@ -16,48 +16,38 @@ import java.util.Map;
 import java.util.Set;
 
 @Controller
-public class MainController {
-
+public class AllPetController {
     @Autowired
-    private PetRepo petRepo;
+    PetRepo petRepo;
 
-    @GetMapping("/")
-    public String greeting(Map<String, Object> model) {
-        return "greetings";
-    }
-
-    @GetMapping("/main")
-    public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model, @AuthenticationPrincipal User user) {
+    @GetMapping("/petList")
+    public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
         Iterable<Pet> pets = petRepo.findAll();
-        Set<Pet> userPets = new HashSet<>();
-        for (Pet pet:pets){
-            if (pet.getMaster().getUsername().equals(user.getUsername())){
-                userPets.add(pet);
-            }
+
+        if (filter != null && !filter.isEmpty()) {
+            pets = petRepo.findById(Integer.valueOf(filter));
+        } else {
+            pets = petRepo.findAll();
         }
 
-        model.addAttribute("pets", userPets);
-        return "main";
+
+        model.addAttribute("pets", pets);
+        model.addAttribute("filter", filter);
+
+        return "petList";
     }
 
 
-    @PostMapping("/main")
+    @PostMapping("/petList")
     public String add(@AuthenticationPrincipal User user, @RequestParam String name, @RequestParam String kind, @RequestParam String breed, Map<String, Object> model) {
         Pet pet = new Pet(name, kind, breed, user);
 
         petRepo.save(pet);
 
         Iterable<Pet> pets = petRepo.findAll();
-        Set<Pet> userPets = new HashSet<>();
-        for (Pet allPet:pets){
-            if (allPet.getMaster().getUsername().equals(user.getUsername())){
-                userPets.add(allPet);
-            }
-        }
 
-        model.put("pets", userPets);
+        model.put("pets", pets);
 
-        return "main";
+        return "petList";
     }
-
 }

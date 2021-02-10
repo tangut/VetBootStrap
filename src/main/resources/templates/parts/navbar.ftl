@@ -28,6 +28,11 @@
                 <a class="nav-link" href="/user">User list</a>
             </li>
             </#if>
+            <#if isAdmin>
+             <li class="nav-item">
+               <a class="nav-link" href="/petList">Pet list</a>
+             </li>
+             </#if>
         </ul>
         <#if user??>
         <a class="nav-link" href = "/profile">${name}</a>

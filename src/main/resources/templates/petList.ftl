@@ -2,21 +2,17 @@
 <#import "parts/login.ftl" as l>
 
 <@c.page>
-<div>
-    <form method="post">
-        <input type="text" name="name" placeholder="Name of pet" />
-        <input type="text" name="kind" placeholder="Kind">
-        <input type="text" name="breed" placeholder="Breed">
-        <input type="hidden" name="_csrf" value="${_csrf.token}" />
-        <button type="submit" class="btn btn-primary">Add</button>
-    </form>
-</div>
+<form method="get" action="/petList">
+    <input type="text" name="filter" value="${filter!""}">
+    <button type="submit" class="btn btn-primary">Find</button>
+</form>
 <#list pets as pet>
 <div>
     <div><h4> Pet № ${pet.id}</h4></div>
     <div>Name: <span>${pet.name}</span></div>
     <div>Kind: <span>${pet.kind}</span></div>
     <div>Breed: <span>${pet.breed}</span></div>
+    <div>Master: <strong>${pet.masterName}</strong><div>
     <div><td><a href="/pet/${pet.id}">View pet profile</a></td></div>
 </div>
 <#else>
