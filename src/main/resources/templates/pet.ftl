@@ -15,7 +15,7 @@
     <#list diagnoses as dia>
     <div>
        <div>Name: <span>${dia.name}</span></div>
-       <div>Simptome: <span>${dia.simptome}</span></div>
+       <div>Simptom: <span>${dia.simptome}</span></div>
        <div>Medicine: <span>${dia.medicine}</span></div>
        <#if isAdmin>
         <a class="btn btn-primary" href="/pet/${pet.id}/diagnose/${dia.id}" role="button">Change diagnose</a>

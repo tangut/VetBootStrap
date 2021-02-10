@@ -8,7 +8,5 @@ import java.util.Optional;
 
 public interface PetRepo  extends CrudRepository<Pet, Long> {
 
-    List<Pet> findByKind(String kind);
-
     List<Pet> findById(Integer intID);
 }

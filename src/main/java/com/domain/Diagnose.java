@@ -1,6 +1,5 @@
 package com.domain;
 
-import javax.imageio.plugins.jpeg.JPEGQTable;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
@@ -9,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 public class Diagnose {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private int id;
     @NotBlank
     private String name;
     @NotBlank
@@ -33,7 +32,7 @@ public class Diagnose {
 
     }
 
-    public Diagnose(long id, @NotBlank String name, @NotBlank String simptome, @NotBlank String medicine, Pet pet) {
+    public Diagnose(int id, @NotBlank String name, @NotBlank String simptome, @NotBlank String medicine, Pet pet) {
         this.id = id;
         this.name = name;
         this.simptome = simptome;
@@ -41,11 +40,11 @@ public class Diagnose {
         this.pet = pet;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

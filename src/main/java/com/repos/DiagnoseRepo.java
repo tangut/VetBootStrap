@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface DiagnoseRepo extends CrudRepository<Diagnose, Long> {
     List<Diagnose> findByPet(List<Pet> pet);
+
+    List<Diagnose> findById(Integer diaId);
 }
