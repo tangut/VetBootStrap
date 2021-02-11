@@ -21,9 +21,6 @@ public class RegistrationController {
     @Autowired
     private UserSevice userSevice;
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
-
     @GetMapping("/registration")
     public String registration() {
         return "registration";
