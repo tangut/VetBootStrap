@@ -8,6 +8,9 @@
 <div class="card my-3" align = "center">
          <div class="m-2">
     <br><h4> Pet № ${pet.id}</h4>
+     <#if pet.filename??>
+       <img src="/img/${pet.filename}"  width="250" height="250">
+    </#if>
     <br>Name: <span>${pet.name}</span>
     <br>Kind: <span>${pet.kind}</span>
     <br>Breed: <span>${pet.breed}</span>

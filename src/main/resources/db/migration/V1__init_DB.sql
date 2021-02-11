@@ -9,6 +9,7 @@ pet_id int4, primary key (id)
 create table pet (
 id int4 not null,
 breed varchar(255),
+filename varchar(255),
 kind varchar(255),
 name varchar(255),
 diagnose_id int4,
