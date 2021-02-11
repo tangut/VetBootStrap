@@ -4,6 +4,7 @@ import com.domain.User;
 import com.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -19,6 +20,9 @@ public class ProfileController {
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     @GetMapping()
     public String getProfile(Model model, @AuthenticationPrincipal User user){
         model.addAttribute("user", userRepo.findByUsername(user.getUsername()));
@@ -29,9 +33,8 @@ public class ProfileController {
     public String updateProfile(@AuthenticationPrincipal User user, @RequestParam String password){
 
         if (!StringUtils.isEmpty(password)) {
-            user.setPassword(password);
+            user.setPassword(passwordEncoder.encode(password));
         }
-
         userRepo.save(user);
 
         return "redirect:/profile";
