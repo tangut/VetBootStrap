@@ -19,7 +19,6 @@ public class User implements UserDetails {
     private String username;
     @NotBlank
     private String password;
-    @NotBlank
     private boolean active;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)

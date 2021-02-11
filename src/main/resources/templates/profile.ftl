@@ -5,7 +5,7 @@
         user = Session.SPRING_SECURITY_CONTEXT.authentication.principal
         name = user.getUsername()
     >
-<h5>Profile of user ${name}</h5>
+<h4 align="center">Profile of user ${name}</h4>
 <h5>Changing password:</h5>
 ${message?ifExists}
 <form method="post">
